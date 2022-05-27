@@ -11,6 +11,47 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasOne(models.profile, {
+        as: "profile",
+        foreignKey : {
+          name : "idUser"
+        },
+      });
+
+      User.hasMany(models.product, {
+        as : "products",
+        foreignKey : {
+          name : "idUser"
+        },
+      });
+
+      User.hasMany(models.transaction, {
+        as : "buyerTransaction",
+        foreignKey : {
+          name : "idBuyer"
+        },
+      });
+
+      User.hasMany(models.transaction, {
+        as : "sellerTransaction",
+        foreignKey : {
+          name : "idSeller"
+        },
+      });
+
+      User.hasMany(models.chat, {
+        as : "customerComplain",
+        foreignKey : {
+          name : "idSender"
+        },
+      });
+
+      User.hasMany(models.chat, {
+        as : "adminComplain",
+        foreignKey : {
+          name : "idRecipient"
+        },
+      });
     }
   }
   User.init({
