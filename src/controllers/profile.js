@@ -1,4 +1,7 @@
+const req = require("express/lib/request");
+const res = require("express/lib/response");
 const { profile } = require("../../models");
+
 
 exports.getProfile = async (req, res) => {
   try {

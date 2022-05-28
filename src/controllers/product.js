@@ -1,3 +1,5 @@
+const req = require("express/lib/request");
+const res = require("express/lib/response");
 const { product, user, category, productCategory } = require("../../models");
 
 exports.getProducts = async (req, res) => {

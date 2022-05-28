@@ -35,7 +35,7 @@ const { getProfile } = require('../controllers/profile');
 router.post('/user', addUsers);
 router.get('/users', getUsers);
 router.get('/user/:id', getUser);
-router.delete('/user/:id', updateUser);
+router.patch('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
 
 router.get('/profile', getProfile);

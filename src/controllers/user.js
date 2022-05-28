@@ -1,3 +1,5 @@
+const req = require("express/lib/request");
+const res = require("express/lib/response");
 const { User, profile } = require("../../models");
 
 exports.addUsers = async (req, res) => {
