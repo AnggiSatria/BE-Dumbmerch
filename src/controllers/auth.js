@@ -30,16 +30,23 @@ exports.register = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
 //encrypt password
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+       
+
 //create variable to accomodate request from user
        const newUser = await User.create({
            name: req.body.name,
            email: req.body.email,
            password: hashedPassword,
        });
+//create TOKEN
+        const SECRET_KEY = "Token"
+        const token = jwt.sign({newUser}, "Token");
 //response status if data success
        res.status(201).send({
            status : "success",
-           data: {newUser}
+           data: {newUser},
+           token
        })
     //response if data error    
     } catch (error) {
@@ -101,10 +108,14 @@ exports.login = async (req, res) => {
                 message : 'Email or Password not match'
             })
         }
+//create TOKEN
+        const SECRET_KEY = "Token"
+        const token = jwt.sign({userExist}, "Token");
 //catch if data success
         res.status(200).send({
             status : "Success",
-            data : {userExist}
+            data : {userExist},
+            token
         });
         
     } catch (error) {
