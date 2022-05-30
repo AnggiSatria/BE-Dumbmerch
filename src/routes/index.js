@@ -30,6 +30,10 @@ const {
   deleteCategory,
 } = require('../controllers/category');
 const { getProfile } = require('../controllers/profile');
+const { 
+  register,
+  login
+} = require("../controllers/auth")
 
 // Route
 router.post('/user', addUsers);
@@ -37,6 +41,9 @@ router.get('/users', getUsers);
 router.get('/user/:id', getUser);
 router.patch('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
+
+router.post("/register", register);
+router.post("/login", login);
 
 router.get('/profile', getProfile);
 

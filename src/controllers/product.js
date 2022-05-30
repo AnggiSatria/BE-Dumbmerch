@@ -1,6 +1,6 @@
 const req = require("express/lib/request");
 const res = require("express/lib/response");
-const { product, user, category, productCategory } = require("../../models");
+const { product, user, category, productcategory } = require("../../models");
 
 exports.getProducts = async (req, res) => {
   try {
@@ -17,7 +17,7 @@ exports.getProducts = async (req, res) => {
           model: category,
           as: "categories",
           through: {
-            model: productCategory,
+            model: productcategory,
             as: "bridge",
             attributes: [],
           },
@@ -69,7 +69,7 @@ exports.getProduct = async (req, res) => {
           model: category,
           as: "categories",
           through: {
-            model: productCategory,
+            model: productcategory,
             as: "bridge",
             attributes: [],
           },
@@ -123,7 +123,7 @@ exports.addProduct = async (req, res) => {
       return { idProduct: newProduct.id, idCategory: parseInt(item) };
     });
 
-    await productCategory.bulkCreate(productCategoryData);
+    await productcategory.bulkCreate(productCategoryData);
 
     let productData = await product.findOne({
       where: {
@@ -141,7 +141,7 @@ exports.addProduct = async (req, res) => {
           model: category,
           as: "categories",
           through: {
-            model: productCategory,
+            model: productcategory,
             as: "bridge",
             attributes: [],
           },
@@ -187,7 +187,7 @@ exports.updateProduct = async (req, res) => {
       idUser: req?.user?.id,
     };
 
-    await productCategory.destroy({
+    await productcategory.destroy({
       where: {
         idProduct: id,
       },
@@ -200,8 +200,8 @@ exports.updateProduct = async (req, res) => {
       });
     }
 
-    if (productCategoryData.length != 0) {
-      await productCategory.bulkCreate(productCategoryData);
+    if (productcategoryData.length != 0) {
+      await productcategory.bulkCreate(productCategoryData);
     }
 
     await product.update(data, {
@@ -238,7 +238,7 @@ exports.deleteProduct = async (req, res) => {
       },
     });
 
-    await productCategory.destroy({
+    await productcategory.destroy({
       where: {
         idProduct: id,
       },

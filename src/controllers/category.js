@@ -1,6 +1,6 @@
 const req = require("express/lib/request");
 const res = require("express/lib/response");
-const { category, productCategory } = require("../../models");
+const { category, productcategory } = require("../../models");
 
 exports.getCategories = async (req, res) => {
   try {
@@ -103,7 +103,7 @@ exports.deleteCategory = async (req, res) => {
       },
     });
 
-    await productCategory.destroy({
+    await productcategory.destroy({
       where: {
         idCategory: id,
       },

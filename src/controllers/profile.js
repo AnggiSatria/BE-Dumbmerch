@@ -5,7 +5,7 @@ const { profile } = require("../../models");
 
 exports.getProfile = async (req, res) => {
   try {
-    const idUser = req.user.id;
+    const idUser = req.User.id;
 
     let data = await profile.findOne({
       where: {
