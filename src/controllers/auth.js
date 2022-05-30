@@ -40,8 +40,7 @@ exports.register = async (req, res) => {
            password: hashedPassword,
        });
 //create TOKEN
-        const SECRET_KEY = "Token"
-        const token = jwt.sign({newUser}, "Token");
+        const token = jwt.sign({newUser}, process.env.SECRET_KEY);
 //response status if data success
        res.status(201).send({
            status : "success",
@@ -109,8 +108,9 @@ exports.login = async (req, res) => {
             })
         }
 //create TOKEN
-        const SECRET_KEY = "Token"
-        const token = jwt.sign({userExist}, "Token");
+        const token = jwt.sign({userExist}, process.env.SECRET_KEY);
+
+        console.log(token);
 //catch if data success
         res.status(200).send({
             status : "Success",
