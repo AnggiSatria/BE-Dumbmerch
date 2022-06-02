@@ -6,8 +6,6 @@ const Joi = require("joi");
 const bcrypt = require("bcrypt");
 // import jwt
 const jwt =require("jsonwebtoken");
-//import dotenv
-require("dotenv").config();
 // exports file register
 exports.register = async (req, res) => {
 // create validation
